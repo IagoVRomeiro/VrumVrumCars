@@ -1,0 +1,27 @@
+MVP
+
+-Compra do carro
+*Remover o carro comprado da "lista_carros"
+*Adicionar o carro comprado no "estoque"
+*Adicionar o carro comprado no "historico-compra"
+*Adicionar marca e taxa do carro comprado em "marcas"
+
+-Venda do carro
+*Remover o carro vendido do "estoque"
+*Adicionar o carro vendido em "historico-venda"
+*Se for unico carro da marca em "estoque", remover marca do carro vendido de "marcas"
+
+----------------------------------------------------------------
+-Busca
+(No diagrama no draw.io)
+----------------------------------------------------------------
+
+-Backup
+*Gerar subpasta "backup" de todos os arquivos em formato binario
+
+-Relatórios de compras e vendas
+*Exibir "historico_compras" e "historico-venda" 
+em um determinado periodo(datas de início e fim)
+*Saldo desse periodo determinado
+*O usuário deve escolher se o relatório será exibido 
+na tela ou escrito em um arquivo específico
