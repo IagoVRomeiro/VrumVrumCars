@@ -103,6 +103,7 @@ void atualizar_marca( char *marca, float taxa) {
 
 //venda
 void vender_carro(Carro *carroVenda) {
+    
     FILE *arquivo_estoque = fopen(ESTOQUE, "r");
     if (arquivo_estoque == NULL) {
         perror("Falha em abrir arquivo de estoque");
@@ -154,7 +155,7 @@ void vender_carro(Carro *carroVenda) {
         exit(EXIT_FAILURE);
     }
 }
-void obter_data_hora_atual(char *buffer, int tamanho_buffer) {
+void data_hora_atual(char *buffer, int tamanho_buffer) {
     time_t tempo_registrado;
     struct tm *tempoinfo;
 
@@ -173,8 +174,8 @@ int main() {
         printf("\nMenu:\n");
         printf("1. Comprar\n");          
         printf("2. Venda\n");
-        printf("3. Alterar Dados");
-        printf("4. Backup");
+        printf("3. Alterar Dados\n");
+        printf("4. Backup\n");
         printf("5. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -241,16 +242,20 @@ int main() {
 
         char data_hora[TAMANHO_LINHA]; 
 
-        obter_data_hora_atual(data_hora, TAMANHO_LINHA);
+        data_hora_atual(data_hora, TAMANHO_LINHA);
         vender_carro(&carroVenda);
 
         printf("Carro vendido com sucesso em %s!\n", data_hora);
+                        break;
             }
             case 3: { //alterar dados
+                        break;
             }
             case 4: { //backup
+                        break;
             } 
             case 5: { //sair
+                        break;
             } 
             
                 printf("Saindo do programa...\n");
