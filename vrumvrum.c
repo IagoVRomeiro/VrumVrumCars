@@ -3,8 +3,6 @@
 #include <string.h>
 #include <time.h>
 #include "carro.h"
-#include "linhas.h"
-
 
 #define TAMANHO_LINHA 50
 #define OFERTAS "veiculos_ofertas.cmd"
@@ -14,61 +12,7 @@
 #define HISTORICO_VENDAS "historico-vendas.cmd"
 
 
-/*
-void vender_carro(Carro *carroVenda) {
-    
-    FILE *arquivo_estoque = fopen(ESTOQUE, "r");
-    if (arquivo_estoque == NULL) {
-        perror("Falha em abrir arquivo de estoque");
-        exit(EXIT_FAILURE);
-    }
 
-    FILE *arquivo_temporario = fopen("temporario.txt", "w");
-    if (arquivo_temporario == NULL) {
-        perror("Falha em criar arquivo temporario");
-        fclose(arquivo_estoque);
-        exit(EXIT_FAILURE);
-    }
-
-    FILE *arquivo_historico = fopen(HISTORICO_VENDAS, "a");
-    if (arquivo_historico == NULL) {
-    perror("Falha em abrir arquivo de histórico de vendas");
-    exit(EXIT_FAILURE);
-}
-
-    char buffer[TAMANHO_LINHA];
-    int carroVendido = 0;
-
-    while (fgets(buffer, TAMANHO_LINHA, arquivo_estoque) != NULL) {
-        if (strstr(buffer, carroVenda->marca) != NULL && strstr(buffer, carroVenda->modelo) != NULL) {
-            carroVendido = 1;
-
-            // registrar a venda
-            char data_hora[TAMANHO_LINHA];
-            obter_data_hora_atual(data_hora, TAMANHO_LINHA);
-            snprintf(buffer, TAMANHO_LINHA, "%s,%s,%s,%d\n", data_hora, carroVenda->marca, carroVenda->modelo, carroVenda->preco);
-            adicionar_linha_arquivo(HISTORICO_VENDAS, buffer);
-        } else {
-            fputs(buffer, arquivo_temporario);
-        }
-    }
-
-    fclose(arquivo_estoque);
-    fclose(arquivo_temporario);
-
-    if (!carroVendido) {
-        printf("Carro não encontrado no estoque.\n");
-        remove("temporario.txt");
-        return;
-    }
-
-    remove(ESTOQUE);
-    if (rename("temporario.txt", ESTOQUE) != 0) {
-        perror("Falha ao renomear arquivo temporario");
-        exit(EXIT_FAILURE);
-    }
-}
-*/
 
 
 int main() {
@@ -91,6 +35,7 @@ int main() {
 
                 printf("Digite os dados do carro que deseja comprar:\n");
                 printf("Preco: ");
+                /*
                 scanf("%d", &carroCompra.preco);
                 printf("Ano: ");
                 scanf("%d", &carroCompra.ano);
@@ -114,7 +59,29 @@ int main() {
                 scanf("%s", carroCompra.tipo);
                 printf("Cor: ");
                 scanf("%s", carroCompra.cor);
+                */
+                carroCompra.preco = 1000;
 
+                carroCompra.ano = 1997;
+                strcpy(carroCompra.marca, "acura");
+
+                strcpy(carroCompra.modelo, "3.0cl");
+               
+                strcpy(carroCompra.condicao,"razoavel");
+             
+                strcpy(carroCompra.combustivel,"gasolina");
+               
+                carroCompra.odometro = 300000;
+               
+                strcpy(carroCompra.status,"desconhecido");
+            
+                strcpy(carroCompra.cambio,"automatico");
+              
+                strcpy(carroCompra.tamanho,"compacto");
+               
+                strcpy(carroCompra.tipo,"coupe");
+              
+                strcpy(carroCompra.cor, "vermelho");
 
                 snprintf(buffer, TAMANHO_LINHA, "%d,%d,%s,%s,%s,%s,%d,%s,%s,%s,%s,%s\n",
                          carroCompra.preco, carroCompra.ano, carroCompra.marca, carroCompra.modelo,
@@ -148,7 +115,6 @@ int main() {
         char data_hora[TAMANHO_LINHA]; 
 
         obter_data_hora_atual(data_hora, TAMANHO_LINHA);
-        vender_carro(&carroVenda);
 
         printf("Carro vendido com sucesso em %s!\n", data_hora);
                         break;
