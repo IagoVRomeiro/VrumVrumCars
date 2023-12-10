@@ -50,26 +50,16 @@ int main() {
                 scanf("%s", carroCompra.cor);
                 */
                 carroCompra.preco = 1000;
-
                 carroCompra.ano = 1997;
                 strcpy(carroCompra.marca, "acura");
-
                 strcpy(carroCompra.modelo, "3.0cl");
-               
                 strcpy(carroCompra.condicao,"razoavel");
-             
                 strcpy(carroCompra.combustivel,"gasolina");
-               
                 carroCompra.odometro = 300000;
-               
                 strcpy(carroCompra.status,"desconhecido");
-            
                 strcpy(carroCompra.cambio,"automatico");
-              
                 strcpy(carroCompra.tamanho,"compacto");
-               
                 strcpy(carroCompra.tipo,"coupe");
-              
                 strcpy(carroCompra.cor, "vermelho");
 
                 snprintf(buffer, TAMANHO_LINHA, "%d,%d,%s,%s,%s,%s,%d,%s,%s,%s,%s,%s\n",
@@ -96,27 +86,16 @@ int main() {
                  Carro  carroVenda;
 
                  carroVenda.preco = 1000;
-
                  carroVenda.ano = 1997;
-
                 strcpy( carroVenda.marca, "acura");
-
                 strcpy( carroVenda.modelo, "3.0cl");
-               
                 strcpy( carroVenda.condicao,"razoavel");
-             
                 strcpy( carroVenda.combustivel,"gasolina");
-               
-                 carroVenda.odometro = 300000;
-               
+                carroVenda.odometro = 300000;
                 strcpy( carroVenda.status,"desconhecido");
-            
                 strcpy( carroVenda.cambio,"automatico");
-              
                 strcpy( carroVenda.tamanho,"compacto");
-               
                 strcpy( carroVenda.tipo,"coupe");
-              
                 strcpy( carroVenda.cor, "vermelho");
 
                 snprintf(buffer, TAMANHO_LINHA, "%d,%d,%s,%s,%s,%s,%d,%s,%s,%s,%s,%s\n",
@@ -131,8 +110,16 @@ int main() {
                         break;
             }
             case 3: { //alterar dados
-                        break;
-            }
+             int escolha;
+             printf("Escolha o arquivo que deseja alterar");
+             printf("1 = Estoque");
+             printf("2 = Lista de Ofertas");
+             scanf("%d", &escolha);
+                if(escolha==1){}
+                else if(escolha==2){}
+                 break;
+                }
+
             case 4: { //backup
                         break;
             } 

@@ -10,15 +10,14 @@
 #define MARCAS "marcas.csv"
 #define HISTORICO_VENDAS "historico-vendas.csv"
 
-void remover_linha_arquivo(char *nome_arquivo, char *remover_linha) {
-
+void remover_linha_arquivo(char *nome_arquivo, const char *remover_linha) {
     FILE *arquivocsv = fopen(nome_arquivo, "r");
     if (arquivocsv == NULL) {
         perror("falha em abrir arquivo principal");
         exit(EXIT_FAILURE);
     }
 
-    FILE *arquivo_temporario = fopen("temporario.csv", "w");
+    FILE *arquivo_temporario = fopen("temporario.txt", "w");
     if (arquivo_temporario == NULL) {
         perror("falha em criar arquivo temporario");
         fclose(arquivocsv);
@@ -36,24 +35,9 @@ void remover_linha_arquivo(char *nome_arquivo, char *remover_linha) {
     fclose(arquivocsv);
     fclose(arquivo_temporario);
 
-    remove(nome_arquivo);  // Remova o arquivo original
-    rename("temporario.csv", nome_arquivo);  // Renomeie o temporário para o original
+    remove(nome_arquivo);  
+    rename("temporario.txt", nome_arquivo); 
 }
-
-
-   /* Remova o arquivo original e renomeie o temporário apenas se uma linha 
-    if (linhaRemovida) {
-        remove(nome_arquivo);
-        if (rename("temporario.csv", nome_arquivo) != 0) {
-            perror("falha ao renomear arquivo temporario");
-            exit(EXIT_FAILURE);
-        }
-
-    remove(nome_arquivo);
-    rename("temporario.csv", nome_arquivo);
-}
-*/
-
 void adicionar_linha_arquivo( char *nome_arquivo,  char *adicionar_linha) {
     FILE *arquivo = fopen(nome_arquivo, "a");
     if (arquivo == NULL) {
@@ -102,62 +86,3 @@ void obter_data_hora_atual(char *buffer, unsigned int tamanho_buffer) {
 
 
 
-
-
-
-
-/* venda
-void vender_carro(Carro *carroVenda) {
-    
-    FILE *arquivo_estoque = fopen(ESTOQUE, "r");
-    if (arquivo_estoque == NULL) {
-        perror("Falha em abrir arquivo de estoque");
-        exit(EXIT_FAILURE);
-    }
-
-    FILE *arquivo_temporario = fopen("temporario.txt", "w");
-    if (arquivo_temporario == NULL) {
-        perror("Falha em criar arquivo temporario");
-        fclose(arquivo_estoque);
-        exit(EXIT_FAILURE);
-    }
-
-    FILE *arquivo_historico = fopen(HISTORICO_VENDAS, "a");
-    if (arquivo_historico == NULL) {
-    perror("Falha em abrir arquivo de histórico de vendas");
-    exit(EXIT_FAILURE);
-}
-
-    char buffer[TAMANHO_LINHA];
-    int carroVendido = 0;
-
-    while (fgets(buffer, TAMANHO_LINHA, arquivo_estoque) != NULL) {
-        if (strstr(buffer, carroVenda->marca) != NULL && strstr(buffer, carroVenda->modelo) != NULL) {
-            carroVendido = 1;
-
-            // registrar a venda
-            char data_hora[TAMANHO_LINHA];
-            obter_data_hora_atual(data_hora, TAMANHO_LINHA);
-            snprintf(buffer, TAMANHO_LINHA, "%s,%s,%s,%d\n", data_hora, carroVenda->marca, carroVenda->modelo, carroVenda->preco);
-            adicionar_linha_arquivo(HISTORICO_VENDAS, buffer);
-        } else {
-            fputs(buffer, arquivo_temporario);
-        }
-    }
-
-    fclose(arquivo_estoque);
-    fclose(arquivo_temporario);
-
-    if (!carroVendido) {
-        printf("Carro não encontrado no estoque.\n");
-        remove("temporario.txt");
-        return;
-    }
-
-    remove(ESTOQUE);
-    if (rename("temporario.txt", ESTOQUE) != 0) {
-        perror("Falha ao renomear arquivo temporario");
-        exit(EXIT_FAILURE);
-    }
-}
-*/
