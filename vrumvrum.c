@@ -4,16 +4,6 @@
 #include <time.h>
 #include "carro.h"
 
-#define TAMANHO_LINHA 50
-#define OFERTAS "veiculos_ofertas.cmd"
-#define ESTOQUE "estoque.cmd"
-#define HISTORICO_COMPRAS "historico-compras.cmd"
-#define MARCAS "marcas.cmd"
-#define HISTORICO_VENDAS "historico-vendas.cmd"
-
-
-
-
 
 int main() {
     int opcao;
@@ -32,10 +22,9 @@ int main() {
         switch (opcao) {
             case 1: { //compra carro
                 Carro carroCompra;
-
+/*
                 printf("Digite os dados do carro que deseja comprar:\n");
                 printf("Preco: ");
-                /*
                 scanf("%d", &carroCompra.preco);
                 printf("Ano: ");
                 scanf("%d", &carroCompra.ano);
@@ -104,19 +93,41 @@ int main() {
             }
             case 2: { //venda carro
 
-        Carro carroVenda;
+                 Carro  carroVenda;
 
-        printf("Digite os dados do carro que deseja vender:\n");
-        printf("Marca: ");
-        scanf("%s", carroVenda.marca);
-        printf("Modelo: ");
-        scanf("%s", carroVenda.modelo);
+                 carroVenda.preco = 1000;
 
-        char data_hora[TAMANHO_LINHA]; 
+                 carroVenda.ano = 1997;
 
-        obter_data_hora_atual(data_hora, TAMANHO_LINHA);
+                strcpy( carroVenda.marca, "acura");
 
-        printf("Carro vendido com sucesso em %s!\n", data_hora);
+                strcpy( carroVenda.modelo, "3.0cl");
+               
+                strcpy( carroVenda.condicao,"razoavel");
+             
+                strcpy( carroVenda.combustivel,"gasolina");
+               
+                 carroVenda.odometro = 300000;
+               
+                strcpy( carroVenda.status,"desconhecido");
+            
+                strcpy( carroVenda.cambio,"automatico");
+              
+                strcpy( carroVenda.tamanho,"compacto");
+               
+                strcpy( carroVenda.tipo,"coupe");
+              
+                strcpy( carroVenda.cor, "vermelho");
+
+                snprintf(buffer, TAMANHO_LINHA, "%d,%d,%s,%s,%s,%s,%d,%s,%s,%s,%s,%s\n",
+                         carroVenda.preco, carroVenda.ano, carroVenda.marca, carroVenda.modelo,
+                         carroVenda.condicao, carroVenda.combustivel, carroVenda.odometro,
+                         carroVenda.status, carroVenda.cambio, carroVenda.tamanho,
+                         carroVenda.tipo, carroVenda.cor);
+
+                remover_linha_arquivo(ESTOQUE, buffer);
+                adicionar_linha_arquivo(HISTORICO_VENDAS, buffer);
+                
                         break;
             }
             case 3: { //alterar dados

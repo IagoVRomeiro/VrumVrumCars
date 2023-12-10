@@ -4,8 +4,6 @@
 #include <time.h>
 #include "linhas.h"
 
-#define TAMANHO_LINHA 50
-
 typedef struct {
     int preco;
     int ano;
