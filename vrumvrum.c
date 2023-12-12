@@ -1,14 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include "carro.h"
+#include "linhas.h"
 
 
 int main() {
     int opcao;
-    char buffer[TAMANHO_LINHA];
-
     do {
         printf("\nMenu:\n");
         printf("1. Comprar\n");          
@@ -21,6 +15,7 @@ int main() {
 
         switch (opcao) {
             case 1: { //compra carro
+
                 Carro carroCompra;
 /*
                 printf("Digite os dados do carro que deseja comprar:\n");
@@ -62,22 +57,14 @@ int main() {
                 strcpy(carroCompra.tipo,"coupe");
                 strcpy(carroCompra.cor, "vermelho");
 
-                snprintf(buffer, TAMANHO_LINHA, "%d,%d,%s,%s,%s,%s,%d,%s,%s,%s,%s,%s\n",
-                         carroCompra.preco, carroCompra.ano, carroCompra.marca, carroCompra.modelo,
-                         carroCompra.condicao, carroCompra.combustivel, carroCompra.odometro,
-                         carroCompra.status, carroCompra.cambio, carroCompra.tamanho,
-                         carroCompra.tipo, carroCompra.cor);
 
-                remover_linha_arquivo(OFERTAS, buffer);
-                adicionar_linha_arquivo(ESTOQUE, buffer);
-                adicionar_linha_arquivo(HISTORICO_COMPRAS, buffer);
 
-                float taxa;
-                printf("Digite a taxa de venda para a marca %s: ", carroCompra.marca);
-                scanf("%f", &taxa);
-                atualizar_marca(carroCompra.marca, taxa);
+                marcasAdiciona(carroCompra.marca);
+                remover_linha_arquivo(OFERTAS, Criarbuffer(carroCompra));
+                adicionar_linha_arquivo(ESTOQUE, Criarbuffer(carroCompra));
+                adicionar_linha_arquivo(HISTORICO_COMPRAS, Criarbuffer(carroCompra));
 
-                printf("Carro comprado com sucesso!\n");
+                 printf("Carro comprado com sucesso!\n");
 
                 break;
             }
@@ -85,8 +72,8 @@ int main() {
 
                  Carro  carroVenda;
 
-                 carroVenda.preco = 1000;
-                 carroVenda.ano = 1997;
+                carroVenda.preco = 1000;
+                carroVenda.ano = 1997;
                 strcpy( carroVenda.marca, "acura");
                 strcpy( carroVenda.modelo, "3.0cl");
                 strcpy( carroVenda.condicao,"razoavel");
@@ -98,28 +85,34 @@ int main() {
                 strcpy( carroVenda.tipo,"coupe");
                 strcpy( carroVenda.cor, "vermelho");
 
-                snprintf(buffer, TAMANHO_LINHA, "%d,%d,%s,%s,%s,%s,%d,%s,%s,%s,%s,%s\n",
-                         carroVenda.preco, carroVenda.ano, carroVenda.marca, carroVenda.modelo,
-                         carroVenda.condicao, carroVenda.combustivel, carroVenda.odometro,
-                         carroVenda.status, carroVenda.cambio, carroVenda.tamanho,
-                         carroVenda.tipo, carroVenda.cor);
-
-                remover_linha_arquivo(ESTOQUE, buffer);
-                adicionar_linha_arquivo(HISTORICO_VENDAS, buffer);
                 
-                        break;
+                remover_linha_arquivo(ESTOQUE, Criarbuffer(carroVenda));
+                adicionar_linha_arquivo(HISTORICO_VENDAS, Criarbuffer(carroVenda));
+
+                 char marcaDoBuffer[TAMANHO_LINHA];
+
+                 sscanf(Criarbuffer(carroVenda), "%*[^,],%*[^,],%[^,]", marcaDoBuffer);  
+
+
+                 printf("Carro vendido com sucesso!\n");                
+
+                
+                break;
             }
             case 3: { //alterar dados
-             int escolha;
-             printf("Escolha o arquivo que deseja alterar");
-             printf("1 = Estoque");
-             printf("2 = Lista de Ofertas");
-             scanf("%d", &escolha);
+                 int escolha;
+                      printf("Escolha o arquivo que deseja alterar\n");
+                      printf("1 = Estoque\n");
+                      printf("2 = Lista de Ofertas\n");
+
+                 scanf("%d", &escolha);
+
+
                 if(escolha==1){}
                 else if(escolha==2){}
+
                  break;
                 }
-
             case 4: { //backup
                         break;
             } 
